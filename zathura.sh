@@ -9,6 +9,7 @@ xhost + 127.0.0.1
 
 docker run --rm -d \
        -e DISPLAY=host.docker.internal:0 \
+       -v /tmp/.X11-unix:/tmp/.X11-unix \
        -v "$CONFIG:/root/.config/zathura/zathurarc:ro" \
        -v "$HOME/.local/share/zathura/:/root/.local/share/zathura/" \
        -v "$FILE:$FILE:ro" \
