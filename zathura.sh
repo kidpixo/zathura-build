@@ -1,15 +1,14 @@
 #!/bin/bash
 
-__DIR__=$(dirname $(readlink -f "$0"))
+__DIR__=$(dirname $(greadlink -f "$0"))
 VERSION=$(cat "${__DIR__}/VERSION")
-FILE=$(readlink -f "$1")
-CONFIG=$(readlink -f "$HOME/.config/zathura/zathurarc")
+FILE=$(greadlink -f "$1")
+CONFIG=$(greadlink -f "$HOME/.config/zathura/zathurarc")
 
-xhost local:docker
+xhost + 127.0.0.1
 
 docker run --rm -d \
-       -e DISPLAY=$DISPLAY \
-       -v /tmp/.X11-unix:/tmp/.X11-unix \
+       -e DISPLAY=host.docker.internal:0 \
        -v "$CONFIG:/root/.config/zathura/zathurarc:ro" \
        -v "$HOME/.local/share/zathura/:/root/.local/share/zathura/" \
        -v "$FILE:$FILE:ro" \
