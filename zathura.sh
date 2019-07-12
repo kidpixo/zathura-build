@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# open XQuartz
+open -a XQuartz.app
+
 __DIR__=$(dirname $(greadlink -f "$0"))
 VERSION=$(cat "${__DIR__}/VERSION")
 FILE=$(greadlink -f "$1")
